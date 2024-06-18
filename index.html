@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>book-world</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- create navbar -->
+   <div class="navbar">
+    <h1>bookworld</h1>
+   </div>
+    
+   <!-- create box seaction -->
+   <div class="container"></div>
+   <div class="container-one">
+    <h2>Rich Dad Poor Dad</h2>
+    <h5>Robert</h5>
+    
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Optio repudiandae iste doloremque quis sint eveniet perspiciatis ullam voluptatum temporibus, explicabo tempora voluptas totam velit dicta sapiente excepturi hic ab aut vitae ipsa? Alias sapiente atque dolores vero, veniam quisquam tenetur neque voluptatem cum. Quam quod sed reiciendis explicabo cupiditate illo.</p>
+   <button onclick="del(event)">delete</button>
+</div>
+
+<!-- create popup overlay -->
+<div class="popup-overlay"></div>
+
+<!--  create a box(form)-->
+<div class="popup-box">
+    <h1>Add Book</h1>
+    <form>
+        <input type="text" placeholder="book name" id="book-title">
+        <input type="text" placeholder="book author" id="author">
+       <textarea placeholder="description" id="description"></textarea>
+       <button id="add">add</button>
+       <button id="cancel">cancel</button>
+    </form>
+</div>
+
+
+<!-- add + button -->
+<button class="btn" id="add-popup-button">+</button>
+
+
+    <script src="/js/book-world/script.js"></script>
+
+    <script>
+        // select the button and popup-box
+        var popupBox=document.querySelector(".popup-box")
+        var button=document.getElementById("add-popup-button")
+
+        // function
+        button.addEventListener("click",function(){
+            popupBox.style.display="block"
+        })
+
+        // select cancel button to prevent default cancel
+        var cancelButton=document.getElementById("cancel")
+        cancelButton.addEventListener("click",function(){
+            event.preventDefault()
+            // to remove the popup by clicking cancel
+            popupBox.style.display="none"
+        })
+
+        // select container,add.book-title,author,description
+       var container=document.querySelector(".container")
+       var addButton=document.getElementById("add")
+       var bookTitle=document.getElementById("book-title")
+       var author=document.getElementById("author")
+       var description=document.getElementById("description")
+    //    function
+      addButton.addEventListener("click",function(event){
+        event.preventDefault()
+         var div=document.createElement("div")
+         div.setAttribute("class","container-one")
+         div.innerHTML=`    <h2>${bookTitle.value}</h2>
+                            <h5>${author.value}</h5>
+    
+                            <p>${description.value} </p>
+                            <button onclick="del(event)">delete</button>`
+        container.append(div)
+        popupBox.style.display="none"
+
+      })
+
+    //   function to delete
+    function del(event){
+        event.target.parentElement. remove()
+    }
+       
+    </script>
+</body>
+</html>
